@@ -10,12 +10,7 @@ db = SQLAlchemy()
 
 def create_app():
     app = Flask(__name__)
-
     app.config['SQLALCHEMY_DATABASE_URI'] = f'mysql://{config.get("mysql", "user")}:{config.get("mysql", "password")}@{config.get("mysql", "host")}/{config.get("mysql", "db")}'
-    app.config['MYSQL_USER'] = config.get('mysql', 'user')
-    app.config['MYSQL_PASSWORD'] = config.get('mysql', 'password')
-    app.config['MYSQL_DB'] = config.get('mysql', 'db')
-    app.config['MYSQL_CURSORCLASS'] = config.get('mysql', 'cursorclass')
 
     db.init_app(app)
     with app.app_context():
