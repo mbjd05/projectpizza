@@ -1,7 +1,16 @@
 {% extends "base.html" %}
 
+<form method="POST" action="/login">
+
 {% block content %}
 <div>
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <div class="alert alert-danger">
+        {{ messages[0] }}
+    </div>
+    {% endif %}
+    {% endwith %}
     <h3>Login</h3>
     <div>
         <form method="POST" action="/login">
