@@ -13,29 +13,33 @@
     <section>
 
         <div>
-            <nav class="navbar">
+            <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
                 <div class="container">
-                    <div>
-                        <div>
-                            <a href="{{ url_for('main.index') }}">
-                                Home
-                            </a>
-                            <a href="{{ url_for('main.orders') }}">
-                                Profile
-                            </a>
-                            <a href="{{ url_for('auth.login') }}">
-                                Login
-                            </a>
-                            <a href="{{ url_for('auth.signup') }}">
-                                Sign Up
-                            </a>
-                            <a href="{{ url_for('auth.logout') }}">
-                                Logout
-                            </a>
-                        </div>
+                    <a class="navbar-brand d-flex align-items-center" href="{{ url_for('main.index') }}" title="To our menu">
+                        <img src="{{ url_for('static', filename='logo.svg') }}" class="pe-3" alt="logo" width="60px">
+                        Mario & Luigi's pizzeria
+                    </a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+            
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav me-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ url_for('main.index') }}">Our menu</a>
+                            </li>
+                        </ul>
+                        <ul class="navbar-nav ms-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ url_for('auth.login') }}">Log in</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ url_for('auth.signup') }}">Sign up</a>
+                            </li>
+                        </ul>
                     </div>
                 </div>
-            </nav>
+            </nav> 
         </div>
 
         <div>
