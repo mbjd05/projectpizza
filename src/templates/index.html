@@ -1,10 +1,20 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h1>
-  Flask Login Example
-</h1>
-<h2>
-  Easy authentication and authorization in Flask.
-</h2>
+  <h1>Menu</h1>
+  <ul>
+    {% for pizza in pizzas %}
+      <li>
+        <h2>{{ pizza.name }}</h2>
+        <p>Ingredients: {{ pizza.description }}</p>
+        <p>Price: €{{ pizza.price }}</p>
+        <form action="/order" method="POST">
+          <input type="hidden" name="pizza_id" value="{{ pizza.id }}">
+          <label for="quantity">Quantity:</label>
+          <input type="number" name="quantity" id="quantity" value="1" min="1">
+          <button type="submit" class="btn btn-primary">Add to basket</button>
+        </form>
+      </li>
+    {% endfor %}
+  </ul>
 {% endblock %}

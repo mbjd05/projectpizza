@@ -1,12 +1,14 @@
 from flask import Blueprint, render_template
 from flask_login import current_user, login_required
-from . import db
+from .helpers import *
+from .models import Pizzas
 
 main = Blueprint('main', __name__)
 
 @main.route('/')
 def index():
-    return render_template('index.html')
+    pizzas = Pizzas.query.all()
+    return render_template('index.html', pizzas=pizzas)
 
 @main.route('/orders')
 @login_required

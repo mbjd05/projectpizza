@@ -1,13 +1,11 @@
 # The __init__.py file is used to create the flask app which then initializes the database connection and registers the blueprints. The blueprints are used to separate the routes into different files.
 import configparser
 from flask import Flask
-from flask_sqlalchemy import SQLAlchemy
+from .helpers import db, add_pizzas_from_json
 from flask_login import LoginManager
 
 config = configparser.ConfigParser()
 config.read('config.ini')
-
-db = SQLAlchemy()
 
 def create_app():
     app = Flask(__name__)
@@ -16,8 +14,9 @@ def create_app():
 
     db.init_app(app)
     with app.app_context():
-        from .models import User
+        from .models import User, Pizzas, Orders
         db.create_all()
+        add_pizzas_from_json(Pizzas)
 
     login_manager = LoginManager()
     login_manager.login_view = 'auth.login'
