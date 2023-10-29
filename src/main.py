@@ -7,7 +7,7 @@ main = Blueprint('main', __name__)
 
 @main.route('/')
 def index():
-    pizzas = Pizzas.query.all()
+    pizzas = Pizzas.query.order_by(Pizzas.position).all()
     return render_template('index.html', pizzas=pizzas)
 
 @main.route('/orders')

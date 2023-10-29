@@ -2,16 +2,31 @@
     {
         "name": "Margherita",
         "price": 9.99,
-        "description": "Tomato sauce, mozzarella, and basil"
+        "description": "Tomato sauce, mozzarella, and basil",
+        "position": 2
     },
     {
         "name": "Pepperoni",
         "price": 11.99,
-        "description": "Tomato sauce, mozzarella, and pepperoni"
+        "description": "Tomato sauce, mozzarella, and pepperoni",
+        "position": 1
     },
     {
         "name": "Vegetarian",
         "price": 10.99,
-        "description": "Tomato sauce, mozzarella, mushrooms, onions, peppers, and olives"
+        "description": "Tomato sauce, mozzarella, mushrooms, and olives",
+        "position": 3
+    },
+    {
+        "name": "Hawaiian",
+        "price": 12.99,
+        "description": "Tomato sauce, mozzarella, ham, and pineapple",
+        "position": 5
+    },
+    {
+        "name": "Meat Lovers",
+        "price": 13.99,
+        "description": "Tomato sauce, mozzarella, pepperoni, ham, bacon, and sausage",
+        "position": 4
     }
 ]

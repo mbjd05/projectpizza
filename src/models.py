@@ -15,6 +15,7 @@ class Pizzas(db.Model):
     name = db.Column(db.String(50), nullable=False)
     price = db.Column(db.Float, nullable=False)
     description = db.Column(db.String(200))
+    position = db.Column(db.Integer)
 
 class Orders(db.Model):
     id = db.Column(db.Integer, primary_key=True)
