@@ -10,6 +10,8 @@ def index():
     pizzas = Pizzas.query.order_by(Pizzas.position).all()
     return render_template('index.html', pizzas=pizzas)
 
+@main.route('/order')
+
 @main.route('/orders')
 @login_required
 def orders():

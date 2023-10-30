@@ -1,20 +1,24 @@
 {% extends "base.html" %}
-
 {% block content %}
   <h1>Menu</h1>
-  <ul>
+  <div class="row row-cols-1 row-cols-md-3 g-4">
     {% for pizza in pizzas %}
-      <li>
-        <h2>{{ pizza.name }}</h2>
-        <p>Ingredients: {{ pizza.description }}</p>
-        <p>Price: €{{ pizza.price }}</p>
-        <form action="/order" method="POST">
-          <input type="hidden" name="pizza_id" value="{{ pizza.id }}">
-          <label for="quantity">Quantity:</label>
-          <input type="number" name="quantity" id="quantity" value="1" min="1">
-          <button type="submit" class="btn btn-primary">Add to basket</button>
-        </form>
-      </li>
+      <div class="col">
+        <div class="card h-100">
+          <img src="{{ url_for('static', filename='img/pizza.jpg') }}" class="card-img-top" alt="Pizza">
+          <div class="card-body">
+            <h5 class="card-title">{{ pizza.name }}</h5>
+            <p class="card-text">{{ pizza.description }}</p>
+            <p class="card-text">Price: €{{ pizza.price }}</p>
+            <form action="/order" method="POST">
+              <input type="hidden" name="pizza_id" value="{{ pizza.id }}">
+              <label for="quantity">Quantity:</label>
+              <input type="number" name="quantity" id="quantity" value="1" min="1">
+              <button type="submit" class="btn btn-primary">Add to basket</button>
+            </form>
+          </div>
+        </div>
+      </div>
     {% endfor %}
-  </ul>
+  </div>
 {% endblock %}

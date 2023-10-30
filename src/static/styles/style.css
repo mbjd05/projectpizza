@@ -1,0 +1,308 @@
+body {
+    font-family: 'Times New Roman', Times, serif; 
+    margin: 0;
+    padding-top: 0;
+}
+
+.bg-img-1 {
+    background-image: linear-gradient(to bottom, rgba(245, 246, 252, 0), rgba(0, 0, 0, 0.65)), url(images/bg1.jpg);
+}
+.bg-img-2 {
+    background-image: linear-gradient(to bottom, rgba(245, 246, 252, 0), rgba(0, 0, 0, 0.65)), url(images/bg2.jpg);
+}
+.bg-img-3 {
+    background-image: linear-gradient(to bottom, rgba(245, 246, 252, 0), rgba(0, 0, 0, 0.65)), url(images/flag.jpg);
+}
+
+.carousel-image {
+    height: 100vh;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+@media (max-width: 991px) {
+    .sidebar {
+        background-color: rgba(255, 255, 255, 0.11);
+        backdrop-filter: blur(10px);
+    }
+}
+
+.carousel-caption {
+    position: absolute;
+    top: 55%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+h1 h2 {
+    font-family: 'Dancing Script', cursive;
+    font-family: 'Roboto Condensed', sans-serif;
+}
+
+h5 {
+  font-family: 'Cookie', cursive;
+}
+
+.section-padding {
+	padding: 100px 0;
+}
+
+.about {
+    background-color: #5f0000;
+    padding: 40px 0;
+}
+  
+.about-text {
+    padding: 40px;
+}
+  
+.about h2 {
+    font-size: 24px;
+    color: #ffffff;
+    margin-bottom: 20px;
+}
+  
+.about p {
+    font-size: 16px;
+    line-height: 1.5;
+    color: #ffffff;
+}
+  
+.about h3 {
+    font-size: 20px;
+    color: #fafafa;
+    margin-top: 20px;
+}
+  
+.about ul {
+    list-style: disc;
+    margin-left: 20px;
+    margin-bottom: 20px;
+}
+  
+.about ul li {
+    font-size: 16px;
+    color: #ececec;
+    margin-bottom: 10px;
+}
+
+.about-img img {
+    max-width: 100%;
+    border: 2px solid #fff;
+    margin: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+  
+.footer .btn.btn-social {
+    margin-right: 5px;
+    width: 35px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--light);
+    border: 1px solid #FFFFFF;
+    border-radius: 35px;
+    transition: .3s;
+}
+
+.footer .btn.btn-link {
+    display: block;
+    margin-bottom: 5px;
+    padding: 0;
+    text-align: left;
+    color: #FFFFFF;
+    font-size: 15px;
+    font-weight: normal;
+    text-transform: capitalize;
+    transition: .3s;
+}
+
+.footer .btn.btn-link::before {
+    position: relative;
+    content: "\f105";
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    margin-right: 10px;
+}
+
+.footer .btn.btn-link:hover {
+    letter-spacing: 1px;
+    box-shadow: none;
+}
+
+.footer .copyright {
+    padding: 25px 0;
+    font-size: 15px;
+    border-top: 1px solid rgba(256, 256, 256, .1);
+}
+
+.footer .copyright a {
+    color: var(--light);
+}
+
+.footer .footer-menu a {
+    margin-right: 15px;
+    padding-right: 15px;
+    border-right: 1px solid rgba(255, 255, 255, .1);
+}
+
+.footer .footer-menu a:last-child {
+    margin-right: 0;
+    padding-right: 0;
+    border-right: none;
+}
+
+#shopping{
+    width: 30px;
+}
+
+.row {
+    transition: all .40s ease;
+}
+
+.row:hover{
+	transform: scale(1.02);
+}
+
+.container{
+    margin: auto;
+    transition: 0.5s;
+}
+.menu-title{
+    padding-top: 30px;
+}
+header{
+    display: grid;
+    grid-template-columns: 1fr 50px;
+}
+header .shopping{
+    position: relative;
+    text-align: right;
+}
+header .shopping img{
+    width: 30px;
+}
+header .shopping span{
+    background: red;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    position: absolute;
+    top: -5px;
+    left: 80%;
+    padding: 3px 10px;
+}
+.list{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, auto));
+    column-gap: 10px;
+    row-gap: 10px;
+    margin-top: 70px;
+}
+.list .item{
+    text-align: center;
+    background-color: #DCE0E1;
+    padding: 20px;
+    box-shadow: 0 50px 50px #757676;
+    letter-spacing: 1px;
+}
+.list .item img{
+    width: 40%;
+    height: 130px;
+    object-fit: cover;
+}
+.list .item .title{
+    font-weight: 600;
+}
+.list .item .price{
+    margin: 10px;
+}
+.list .item button{
+    background-color: #1C1F25;
+    color: #fff;
+    width: 100%;
+    padding: 10px;
+}
+.card{
+    position: fixed;
+    top:0;
+    left: 100%;
+    width: 500px;
+    background-color: #1C1F25;
+    height: 100vh;
+    transition: 0.5s;
+    overflow-y: hidden;
+}
+.card-container {
+    max-height: 80vh; 
+    overflow-y: auto; 
+    padding: 10px; 
+}
+.active .card{
+    left: calc(100% - 500px); 
+}
+.active .container{
+   transform: translateX(-200px);
+}
+.card h1{
+    color: #fff9e1;
+    font-weight: 100;
+    margin: 0;
+    padding: 0 20px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+}
+.card .checkOut{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+
+}
+.card .checkOut div{
+    background-color:#bb1e1e;
+    width: 100%;
+    height: 70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    cursor: pointer;
+}
+.card .checkOut div:nth-child(2){
+    background-color: #1C1F25;
+    color: #fff;
+}
+.listCard li{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, auto));
+    color: #fff;
+    row-gap: 10px;
+    max-width: 100%;
+    padding: 10px;
+}
+.listCard li div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.listCard li img{
+    max-width: 100%;
+}
+.listCard li button{
+    background-color: #fff5;
+    border: none;
+}
+.listCard .count{
+    margin: 0 10px;
+}
+
+.img-fluid-1{
+    width: 40px;
+}
