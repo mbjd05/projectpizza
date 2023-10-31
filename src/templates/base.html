@@ -55,7 +55,7 @@
                         <header>
                         <div class="shopping">
                           <img src="{{ url_for('static', filename='bag.svg') }}" class="img-fluid-1"  width="30px">
-                          <span class="quantity">0</span>
+                          <span class="quantity">{{ total_pizza_quantity() }}</span>
                         </header>
                       </div>
                       </div>

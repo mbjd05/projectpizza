@@ -1,6 +1,35 @@
 {% extends "base.html" %}
 {% block content %}
-  <h1>Menu</h1>
+
+<script>
+  function formatNumber(value) {
+    if (isNaN(value) || value === 0) {
+      return "0";
+    }
+    return value > 0 ? "+" + value : value.toString();
+  }
+
+  function increment(id) {
+    const input = document.getElementById(id);
+    let value = parseFloat(input.value);
+    if (!isNaN(value)) {
+      value++;
+      input.value = formatNumber(value);
+    }
+  }
+
+  function decrement(id) {
+    const input = document.getElementById(id);
+    let value = parseFloat(input.value);
+    if (!isNaN(value)) {
+      value--;
+      input.value = formatNumber(value);
+    }
+  }
+</script>
+
+<div class="container py-5">
+  <h1 class="mb-5">Menu</h1>
   <div class="row row-cols-1 row-cols-md-3 g-4">
     {% for pizza in pizzas %}
       <div class="col">
@@ -12,13 +41,17 @@
             <p class="card-text">Price: €{{ pizza.price }}</p>
             <form action="/order" method="POST">
               <input type="hidden" name="pizza_id" value="{{ pizza.id }}">
-              <label for="quantity">Quantity:</label>
-              <input type="number" name="quantity" id="quantity" value="1" min="1">
-              <button type="submit" class="btn btn-primary">Add to basket</button>
+              <label for="quantity{{pizza.id}}">Quantity:</label>
+              <button type="button" onclick="decrement('quantity{{pizza.id}}')" class="btn btn-secondary btn-sm">-</button>
+              <input type="text" name="quantity" id="quantity{{pizza.id}}" value="0" onchange="this.value = formatNumber(parseFloat(this.value))" class="form-control d-inline-block w-auto mx-2 text-center">
+              <button type="button" onclick="increment('quantity{{pizza.id}}')" class="btn btn-secondary btn-sm">+</button>
+              <button type="submit" class="btn btn-primary mt-3">Adjust amount</button>
             </form>
           </div>
         </div>
       </div>
     {% endfor %}
   </div>
+</div>
+
 {% endblock %}
