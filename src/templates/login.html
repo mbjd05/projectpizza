@@ -1,38 +1,34 @@
 {% extends "base.html" %}
 
-<form method="POST" action="/login">
-
 {% block content %}
 <div>
     {% with messages = get_flashed_messages() %}
-    {% if messages %}
+    {% for message in messages %}
     <div class="alert alert-danger">
-        {{ messages[0] }}
+        {{ message }}
     </div>
-    {% endif %}
+    {% endfor %}
     {% endwith %}
     <h3>Login</h3>
-    <div>
-        <form method="POST" action="/login">
+    <form method="POST" action="/login">
+        <div>
             <div>
-                <div>
-                    <input type="email" name="email" placeholder="Your Email" autofocus="">
-                </div>
+                <input type="email" name="email" placeholder="Your Email" autofocus="">
             </div>
+        </div>
 
+        <div>
             <div>
-                <div>
-                    <input type="password" name="password" placeholder="Your Password">
-                </div>
+                <input type="password" name="password" placeholder="Your Password">
             </div>
-            <div>
-                <label>
-                    <input type="checkbox" name="remember">
-                    Remember me
-                </label>
-            </div>
-            <button>Login</button>
-        </form>
-    </div>
+        </div>
+        <div>
+            <label>
+                <input type="checkbox" name="remember">
+                Remember me
+            </label>
+        </div>
+        <button>Login</button>
+    </form>
 </div>
 {% endblock %}
