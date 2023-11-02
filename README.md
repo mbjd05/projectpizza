@@ -14,16 +14,16 @@ This tutorial assumes you are using PowerShell
 
    ⚠️ **Make sure you run every command from here on from the `projectpizza` folder** ⚠️
 
-3. create a virtual environment in the `projectpizza` folder called `.venv`:
+3. create a virtual environment in the `/projectpizza/src/` folder called `.venv`:
 
    ```powershell
-   python -m venv .venv
+   python -m venv .\src\.venv
    ```
 
 4. activate your venv:
 
    ```powershell
-   & "c:/pathtoyourfolder/pizzaproject/src/.venv/Scripts/Activate.ps1"
+   & "c:/pathtoyourfolder/projectpizza/src/.venv/Scripts/Activate.ps1"
    ```
 
    If you get an error trying to run `Activate.ps1`, open `powershell` as Administrator and change your execution policy to allow for execution of scripts:
