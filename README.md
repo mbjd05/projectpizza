@@ -1,8 +1,8 @@
 # The Pizzeria project for sem 1 of fhict
 
-# Installation instructions
+## Installation instructions
 
-## Windows
+### Windows
 
 This tutorial assumes you are using PowerShell
 
