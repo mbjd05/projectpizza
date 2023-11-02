@@ -35,7 +35,7 @@ This tutorial assumes you are using PowerShell
 5.  When you activated your virtual environment, set the FLASK_APP environment variable to the `src` folder:
 
    ```powershell
-   $env:FLASK_APP = ".\src"
+	$env:FLASK_APP = ".\src"
    ```
 
 6. Install the required dependencies:
