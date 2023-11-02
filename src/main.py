@@ -65,3 +65,7 @@ def clear_order():
 @main.route('/reviews')
 def reviews():
     return render_template('reviews.html')
+
+@main.route('contact_us')
+def contact_us():
+    return render_template('CS.html')
