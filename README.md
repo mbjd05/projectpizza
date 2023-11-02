@@ -58,12 +58,12 @@ This tutorial assumes you are using PowerShell
     secret_key = zmIjviApsqlV3Js1RT41Dg
     ```
 
-    You can easily generate a secret key  with python 3.6+ using the interactive shell:
+    You can easily generate a secret key  with python 3.6+ using the interactive shell (`>>>`):
 
     ```python
-    >>> import secrets
-    >>> key = secrets.token_urlsafe(16)
-    >>> print(key)
+    import secrets
+    key = secrets.token_urlsafe(16)
+    print(key)
     ```
 
 8. Run your app!
