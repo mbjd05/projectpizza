@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template
+from flask import Blueprint, render_template, send_from_directory
 from flask_login import current_user, login_required
 from .helpers import *
 from .models import Pizzas
@@ -40,18 +40,28 @@ def add_pizza():
         order = [item for item in order if item['pizza_id'] != pizza_id]
 
     session['order'] = order  # Update the session with the new order
+    print(session['order'])
 
     return redirect(url_for('main.index'))  # Redirect back to the index page
-
-
-
 
 @main.route('/orders')
 @login_required
 def orders():
     return render_template('orders.html', username=current_user.name)
 
+@main.route('/checkout')
+@login_required
+def checkout():
+    #session stored orders to db
+    order = session.get('order', [])
+
+    return render_template('checkout.html', username=current_user.name)
+
 @main.route('/clearorder')
 def clear_order():
     session.pop('order', None)
     return redirect(url_for('main.index'))
+
+@main.route('/reviews')
+def reviews():
+    return render_template('reviews.html')
