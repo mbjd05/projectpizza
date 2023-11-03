@@ -2,6 +2,7 @@ from flask import Blueprint, render_template, send_from_directory
 from flask_login import current_user, login_required
 from .helpers import *
 from .models import Pizzas
+import json
 
 main = Blueprint('main', __name__)
 
@@ -10,39 +11,12 @@ def index():
     pizzas = Pizzas.query.order_by(Pizzas.position).all()
     return render_template('index.html', pizzas=pizzas)
 
-@main.route('/order', methods=['POST'])
-def add_pizza():
-    pizza_id = request.form.get('pizza_id')
-    quantity = int(request.form.get('quantity'))
-
-    pizza = Pizzas.query.get(pizza_id)
-    order = session.get('order', [])  # Initialize order as an empty list
-
-    for item in list(order):  # Create a copy of the list for iteration
-        if item['pizza_id'] == pizza_id:
-            item['quantity'] += quantity  # adjust quantity
-            if item['quantity'] <= 0:
-                # If updated quantity is 0 or less, remove the pizza type from the order
-                order.remove(item)
-            break
-    else:
-        # If pizza_id was not in the order and quantity is greater than 0, add it
-        if quantity > 0:
-            order.append({
-                'pizza_id': pizza_id, 
-                'name': pizza.name, 
-                'quantity': quantity, 
-                'price': pizza.price
-            })
-
-    # If quantity is 0, remove the pizza from the order
-    if quantity == 0:
-        order = [item for item in order if item['pizza_id'] != pizza_id]
-
-    session['order'] = order  # Update the session with the new order
+@main.route('/Order', methods=['POST'])
+def recieve_data():
+    data = request.get_json()
+    session['order'] = data['pizzaID']
     print(session['order'])
-
-    return redirect(url_for('main.index'))  # Redirect back to the index page
+    return 'good job!', 200
 
 @main.route('/orders')
 @login_required
