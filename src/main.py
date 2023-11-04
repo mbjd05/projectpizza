@@ -1,7 +1,8 @@
-from flask import Blueprint, render_template, send_from_directory
+from flask import Blueprint, render_template
 from flask_login import current_user, login_required
 from .helpers import *
 from .models import Pizzas
+from flask_cors import cross_origin
 import json
 
 main = Blueprint('main', __name__)
@@ -11,12 +12,16 @@ def index():
     pizzas = Pizzas.query.order_by(Pizzas.position).all()
     return render_template('index.html', pizzas=pizzas)
 
-@main.route('/Order', methods=['POST'])
+@main.route('/Order', methods=['POST', 'OPTIONS'])
+@cross_origin()
 def recieve_data():
     data = request.get_json()
-    session['order'] = data['pizzaID']
-    print(session['order'])
-    return 'good job!', 200
+    session['order'] = data['items']
+    for item in session['order']:
+        pizza = Pizzas.query.get(item['id'])
+        if pizza:
+            print(f"id: {item['id']}, quantity: {item['quantity']}, name: {pizza.name}")
+    return 'We are fresh out of real pizzas 🖕', 200
 
 @main.route('/orders')
 @login_required

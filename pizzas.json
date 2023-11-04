@@ -6,27 +6,33 @@
         "position": 1
     },
     {
-        "name": "Pepperoni",
+        "name": "Montanara",
         "price": 11.99,
         "description": "Tomato sauce, mozzarella, and pepperoni",
         "position": 2
     },
     {
-        "name": "Vegetarian",
+        "name": "Con carne",
         "price": 10.99,
         "description": "Tomato sauce, mozzarella, mushrooms, and olives",
         "position": 3
     },
     {
-        "name": "Hawaiian",
+        "name": "Pepperoni",
         "price": 12.99,
         "description": "Tomato sauce, mozzarella, ham, and pineapple",
         "position": 5
     },
     {
-        "name": "Meat Lovers",
+        "name": "Marinara",
         "price": 13.99,
         "description": "Tomato sauce, mozzarella, pepperoni, ham, bacon, and sausage",
         "position": 4
+    },
+    {
+        "name": "Napoletana",
+        "price": 14.99,
+        "description": "Tomato sauce, mozzarella, pepperoni, ham, bacon, sausage, and mushrooms",
+        "position": 6
     }
 ]
