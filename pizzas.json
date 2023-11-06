@@ -3,13 +3,13 @@
         "name": "Margherita",
         "price": 9.99,
         "description": "Tomato sauce, mozzarella, and basil",
-        "position": 2
+        "position": 1
     },
     {
         "name": "Pepperoni",
         "price": 11.99,
         "description": "Tomato sauce, mozzarella, and pepperoni",
-        "position": 1
+        "position": 2
     },
     {
         "name": "Vegetarian",

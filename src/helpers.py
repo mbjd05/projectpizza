@@ -1,7 +1,7 @@
 from flask_sqlalchemy import SQLAlchemy
+from flask import request, redirect, session, url_for
 import json
-
-db = SQLAlchemy()
+from .models import db, Pizzas
 
 def add_pizzas_from_json(Pizzas):
     # Read the pizzas.json file
@@ -23,3 +23,8 @@ def add_pizzas_from_json(Pizzas):
         if not any(p['name'] == pizza.name for p in pizzas_data):
             db.session.delete(pizza)
     db.session.commit()  # Commit any deletions here
+
+def total_pizza_quantity():
+    order = session.get('order', [])
+    total_quantity = sum(item['quantity'] for item in order)
+    return total_quantity

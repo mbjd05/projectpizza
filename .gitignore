@@ -1,3 +1,4 @@
 *.code-workspace
+.vscode/
 src/.venv/
 config.ini

@@ -1,8 +1,10 @@
 # Models are classes that translate to database tables
 # Each class is a table and each attribute is a column
 from flask_login import UserMixin
-from sqlalchemy import Nullable
-from .helpers import db
+from sqlalchemy import  Nullable
+from flask_sqlalchemy import SQLAlchemy
+
+db = SQLAlchemy()
 
 class User(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True) # primary keys are required by SQLAlchemy
