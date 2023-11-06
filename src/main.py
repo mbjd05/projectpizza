@@ -64,8 +64,12 @@ def clear_order():
 
 @main.route('/reviews')
 def reviews():
+<<<<<<< HEAD
     return render_template('reviews.html')
 
 @main.route('/contact_us')
 def contact_us():
     return render_template('Contact_us.html')
+=======
+    return render_template('reviews.html')
+>>>>>>> 01338598fed69c191835e2c14c66793197f3451a
