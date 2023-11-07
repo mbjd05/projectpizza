@@ -3,7 +3,7 @@ from flask_login import current_user, login_required
 from .helpers import *
 from .models import Pizzas, Orders
 from flask_cors import cross_origin
-import json, uuid
+import json, random
 
 main = Blueprint('main', __name__)
 
@@ -16,22 +16,18 @@ def index():
 @cross_origin()
 def recieve_data():
     data = request.get_json()
-    #print(data)
+    order_id = int(random.randrange(1, 300))
     for item in data['items']:
         pizza = Pizzas.query.get(item['id'])
         if pizza:
-            print(f"id: {item['id']}, quantity: {item['quantity']}, name: {pizza.name}")
-            unique = False
-            while not unique:
-                order_id = str(uuid.uuid4())
-                existing_order = Orders.query.filter_by(order_id=order_id).first()
-                if not existing_order:
-                    unique = True
-            order = Orders(order_id=order_id)   
-
-            #return a client id for tracking order
-            return_str = f"Your order id is: {order_id}"
-    return return_str, 200
+            order = Orders(order_id=order_id, pizza_id=str(item['id']), quantity=str(item['quantity']))
+            order.set_pizza_name()   
+            db.session.add(order)
+    db.session.commit()
+    return_str = f"Your order id is: {order_id}"
+    #retun_str to json
+    response = json.dumps(return_str)
+    return response
 
 @main.route('/orders')
 @login_required

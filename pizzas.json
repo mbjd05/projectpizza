@@ -34,5 +34,41 @@
         "price": 14.99,
         "description": "Tomato sauce, mozzarella, pepperoni, ham, bacon, sausage, and mushrooms",
         "position": 6
+    },
+    {
+        "name": "Radicchio",
+        "price": 12.99,
+        "description": "Tomato sauce, mozzarella, radicchio, and prosciutto",
+        "position": 7
+    },
+    {
+        "name": "Calzone",
+        "price": 9.75,
+        "description": "Tomato sauce, mozzarella, ricotta, and spinach baked in a dough pocket",
+        "position": 8
+    },
+    {
+        "name": "Capricciosa",
+        "price": 11.34,
+        "description": "Tomato sauce, mozzarella, artichokes, olives and ham",
+        "position": 9
+    },
+    {
+        "name": "Quattro stagioni",
+        "price": 13.27,
+        "description": "Tomato sauce, mozzarella, mushrooms, ham, artichokes, and olives",
+        "position": 10
+    },
+    {
+        "name": "Quattro formaggi",
+        "price": 12.99,
+        "description": "Tomato sauce, mozzarella, gorgonzola, parmesan, and provolone",
+        "position": 11
+    },
+    {
+        "name": "proscuito e rucola",
+        "price": 10.17,
+        "description": "Tomato sauce, mozzarella, prosciutto, and arugula",
+        "position": 12
     }
 ]
