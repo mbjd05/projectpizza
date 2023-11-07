@@ -1,57 +1,15 @@
-{% extends "base.html" %}
-{% block content %}
-
+<!DOCTYPE html>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
 <script>
-  function formatNumber(value) {
-    if (isNaN(value) || value === 0) {
-      return "0";
-    }
-    return value > 0 ? "+" + value : value.toString();
-  }
-
-  function increment(id) {
-    const input = document.getElementById(id);
-    let value = parseFloat(input.value);
-    if (!isNaN(value)) {
-      value++;
-      input.value = formatNumber(value);
-    }
-  }
-
-  function decrement(id) {
-    const input = document.getElementById(id);
-    let value = parseFloat(input.value);
-    if (!isNaN(value)) {
-      value--;
-      input.value = formatNumber(value);
-    }
-  }
-</script>
-
-<div class="container py-5">
-  <h1 class="mb-5">Menu</h1>
-  <div class="row row-cols-1 row-cols-md-3 g-4">
-    {% for pizza in pizzas %}
-      <div class="col">
-        <div class="card h-100">
-          <img src="{{ url_for('static', filename='img/pizza.jpg') }}" class="card-img-top" alt="Pizza">
-          <div class="card-body">
-            <h5 class="card-title">{{ pizza.name }}</h5>
-            <p class="card-text">{{ pizza.description }}</p>
-            <p class="card-text">Price: €{{ pizza.price }}</p>
-            <form action="/order" method="POST">
-              <input type="hidden" name="pizza_id" value="{{ pizza.id }}">
-              <label for="quantity{{pizza.id}}">Quantity:</label>
-              <button type="button" onclick="decrement('quantity{{pizza.id}}')" class="btn btn-secondary btn-sm">-</button>
-              <input type="text" name="quantity" id="quantity{{pizza.id}}" value="0" onchange="this.value = formatNumber(parseFloat(this.value))" class="form-control d-inline-block w-auto mx-2 text-center">
-              <button type="button" onclick="increment('quantity{{pizza.id}}')" class="btn btn-secondary btn-sm">+</button>
-              <button type="submit" class="btn btn-primary mt-3">Adjust amount</button>
-            </form>
-          </div>
-        </div>
-      </div>
-    {% endfor %}
-  </div>
-</div>
-
-{% endblock %}
+    const socket = io();
+    socket.on('order_ready', function(orderIds) { 
+        // Update the page to display the ready order IDs 
+        console.log(orderIds);
+        let orderId = orderIds.order_id;
+        document.getElementById("ready_orders").innerHTML = `Order ID: ${orderId}`;
+    }); 
+</script> 
+<body>
+    <h1>Orders</h1>
+    <div id="ready_orders"></div>  
+</body>
