@@ -13,7 +13,7 @@ config.read('config.ini')
 
 def main():
     app = Flask(__name__)
-    socketio = SocketIO(app)
+    socketio = SocketIO(app, always_connect=True, cors_allowed_origins="*")
     app.config['SQLALCHEMY_DATABASE_URI'] = f'mysql://{config.get("mysql", "user")}:{config.get("mysql", "password")}@{config.get("mysql", "host")}/{config.get("mysql", "db")}'
     app.secret_key = config.get("app", "secret_key")
     app.config['SESSION_TYPE'] = 'filesystem'
@@ -32,12 +32,23 @@ def main():
 
 
 def check_orders():
-      while True:
+    while True:
         with app.app_context():  
             time.sleep(5)
             updated_orders = Orders.query.filter(and_(Orders.ready == 1, Orders.picked_up == 0)).all()
+            picked_up_orders = Orders.query.filter(and_(Orders.ready == 1, Orders.picked_up == 1)).all()
+
             for order in updated_orders:
                 socketio.emit('order_ready', {'order_id': order.order_id})
+
+            for order in picked_up_orders:
+                socketio.emit('order_picked_up', {'order_id': order.order_id})
+
+            not_picked_up_orders = Orders.query.filter(and_(Orders.ready == 1, Orders.picked_up == 0)).all()
+            for order in not_picked_up_orders:
+                socketio.emit('order_not_picked_up', {'order_id': order.order_id})
+
+
 
 def ordercheck_in_backround():
     t = Thread(target=check_orders)
@@ -47,4 +58,4 @@ def ordercheck_in_backround():
 if __name__ == '__main__':
     app, socketio = main()  # Create the Flask app and SocketIO
     ordercheck_in_backround() # Start the order check function in the background
-    socketio.run(app, debug=True, port=5000)
+    socketio.run(app, debug=True, port=5000, host='0.0.0.0')

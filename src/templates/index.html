@@ -1,15 +1,51 @@
 <!DOCTYPE html>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
-<script>
-    const socket = io();
-    socket.on('order_ready', function(orderIds) { 
-        // Update the page to display the ready order IDs 
-        console.log(orderIds);
-        let orderId = orderIds.order_id;
-        document.getElementById("ready_orders").innerHTML = `Order ID: ${orderId}`;
-    }); 
-</script> 
+<html>
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
+    <script>
+        const socket = io('http://bore.pub:56281');
+        let orderList = []; // orderid list
+
+        socket.on('order_ready', function(order) { 
+            const orderId = order.order_id;
+
+            // If the order is not already in the list, add it.
+            if (!orderList.includes(orderId)) {
+                orderList.push(orderId); // Add the order ID to the list
+            }
+        });
+
+        socket.on('order_picked_up', function(order) {
+            const orderId = order.order_id;
+
+            // Remove the order ID from the orderList
+            orderList = orderList.filter(item => item !== orderId);
+
+            // Update the page
+            console.log(orderList);
+            const orderListHtml = orderList.map(orderId => `<li class="list-group-item fs-1">${orderId}</li>`).join('');
+            document.getElementById("ready_orders").innerHTML = orderListHtml;
+        });
+
+        socket.on('order_not_picked_up', function(order) {
+            const orderId = order.order_id;
+
+            if (!orderList.includes(orderId)) {
+                orderList.push(orderId); // Add the order ID to the list
+            }
+
+            // Update the page
+            console.log(orderList);
+            const orderListHtml = orderList.map(orderId => `<li class="list-group-item fs-1">${orderId}</li>`).join('');
+            document.getElementById("ready_orders").innerHTML = orderListHtml;
+        });
+        
+    </script>
+
+</head>
 <body>
-    <h1>Orders</h1>
-    <div id="ready_orders"></div>  
+    <h1 class="text-center">Orders ready for pickup: </h1>
+    <ul id="ready_orders" class="list-group"></ul>  
 </body>
+</html>
