@@ -33,6 +33,6 @@ def new_order():
 def index():
     return render_template('index.html')
 
-@main.route('/reviews')
-def reviews():
-    return render_template('reviews.html')
+@main.route('/kitchen')
+def kitchen():
+    return render_template('kitchen.html')

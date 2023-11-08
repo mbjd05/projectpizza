@@ -49,7 +49,7 @@ def check_orders():
                 socketio.emit('order_not_picked_up', {'order_id': order.order_id})
 
 
-
+#multithreading to run check_orders in the background
 def ordercheck_in_backround():
     t = Thread(target=check_orders)
     t.daemon = True
